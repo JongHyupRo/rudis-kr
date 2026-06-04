@@ -14,6 +14,7 @@ export default function ShoesPage() {
     if (activeKey === "sub") return shoes.filter((s) => s.subcategory === activeValue);
     if (activeKey === "age") return shoes.filter((s) => s.age === activeValue);
     if (activeKey === "collection") return shoes.filter((s) => s.collection === activeValue);
+    if (activeKey === "model") return shoes.filter((s) => s.model === activeValue);
     if (activeKey === "sub+age") {
       const [sub, age] = activeValue.split("+");
       return shoes.filter((s) => s.subcategory === sub && (s.age === age || s.age === "공용"));
