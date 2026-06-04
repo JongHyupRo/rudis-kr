@@ -1,18 +1,17 @@
-import { apparel, getApparelBySlug } from "@/data/apparel";
 import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 import ProductDetail from "@/components/ProductDetail";
 
 export async function generateStaticParams() {
-  return apparel.map((a) => ({ slug: a.slug }));
+  const rows = await prisma.product.findMany({ where: { category: "apparel", isActive: true }, select: { slug: true } });
+  return rows.map(r => ({ slug: r.slug }));
 }
 
-export default function ApparelDetailPage({ params }: { params: { slug: string } }) {
-  const product = getApparelBySlug(params.slug);
+export default async function ApparelDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({ where: { slug }, include: { images: { orderBy: { position: "asc" } } } });
   if (!product) notFound();
-
-  const related = apparel
-    .filter((a) => a.slug !== product.slug && a.subcategory === product.subcategory)
-    .slice(0, 4);
-
-  return <ProductDetail product={product} related={related} basePath="/apparel" categoryLabel="의류" />;
+  const related = await prisma.product.findMany({ where: { category: "apparel", subcategory: product.subcategory, slug: { not: product.slug }, isActive: true }, include: { images: { orderBy: { position: "asc" } } }, take: 4, orderBy: { sortOrder: "asc" } });
+  const toProps = (p: typeof product) => ({ slug: p.slug, name: p.name, nameKo: p.nameKo, price: p.priceKrw ?? 0, category: p.category, subcategory: p.subcategory, age: p.age, description: p.descriptionKo ?? "", features: p.features, images: p.images.map(i => i.url), badge: p.badge ?? undefined, collection: p.collection ?? undefined });
+  return <ProductDetail product={toProps(product)} descriptionEn={product.descriptionEn ?? undefined} sizes={product.sizes} related={related.map(toProps)} basePath="/apparel" categoryLabel="의류" />;
 }

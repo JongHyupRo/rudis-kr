@@ -4,37 +4,37 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // ─────────────────────────────────────────────────
 // 제품 (신발 / 장비 / 의류 통합)
 // ─────────────────────────────────────────────────
 model Product {
-  id          Int      @id @default(autoincrement())
-  slug        String   @unique
-  name        String                        // 영문 제품명
-  nameKo      String   @map("name_ko")      // 한국어 제품명
-  category    Category                      // shoes | gear | apparel
-  subcategory String                        // 레슬링화, 훈련화, 기어팩 등
-  age         Age      @default(공용)        // 성인 | 유스 | 공용
-  model       String?                       // JB1, Colt 4.0 등 모델 그룹
-  collection  String?                       // USA 레슬링, 파스텔 컬렉션 등
-  badge       String?                       // 베스트셀러 | 신상품 | 한정판
-  priceKrw    Int?     @map("price_krw")    // 원화 가격 (카탈로그라 선택적)
-  priceUsd    Float?   @map("price_usd")    // 달러 참고가
-  descriptionKo String? @map("description_ko") // 한국어 설명
-  descriptionEn String? @map("description_en") // 영문 원본 설명
-  features    String[] // 주요 특징 목록
-  sizes       String[] // 사이즈 목록 (US 기준)
-  images      ProductImage[]
-  isActive    Boolean  @default(true) @map("is_active")
-  sortOrder   Int      @default(0) @map("sort_order")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id            Int            @id @default(autoincrement())
+  slug          String         @unique
+  name          String
+  nameKo        String         @map("name_ko")
+  category      Category
+  subcategory   String
+  age           String         @default("공용")
+  model         String?
+  collection    String?
+  badge         String?
+  priceKrw      Int?           @map("price_krw")
+  priceUsd      Float?         @map("price_usd")
+  descriptionKo String?        @db.Text @map("description_ko")
+  descriptionEn String?        @db.Text @map("description_en")
+  features      String[]
+  sizes         String[]
+  isActive      Boolean        @default(true) @map("is_active")
+  sortOrder     Int            @default(0) @map("sort_order")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  images        ProductImage[]
 
   @@index([category])
   @@index([category, subcategory])
-  @@index([category, age])
   @@index([model])
   @@index([collection])
   @@map("products")
@@ -47,26 +47,17 @@ model ProductImage {
   id        Int     @id @default(autoincrement())
   productId Int     @map("product_id")
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  url       String  // /images/shoes/jb1-black-metal.jpg 또는 CDN URL
-  alt       String? // alt 텍스트
-  position  Int     @default(0) // 이미지 순서 (0 = 메인)
+  url       String
+  alt       String?
+  position  Int     @default(0)
   createdAt DateTime @default(now()) @map("created_at")
 
   @@index([productId, position])
   @@map("product_images")
 }
 
-// ─────────────────────────────────────────────────
-// Enum
-// ─────────────────────────────────────────────────
 enum Category {
   shoes
   gear
   apparel
-}
-
-enum Age {
-  성인
-  유스
-  공용
 }

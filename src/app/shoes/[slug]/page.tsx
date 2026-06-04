@@ -1,21 +1,46 @@
-import { shoes } from "@/data/shoes";
-import { offmatShoes } from "@/data/offmat";
 import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 import ProductDetail from "@/components/ProductDetail";
 
-const allShoes = [...shoes, ...offmatShoes];
-
 export async function generateStaticParams() {
-  return allShoes.map((s) => ({ slug: s.slug }));
+  const rows = await prisma.product.findMany({
+    where: { category: "shoes", isActive: true },
+    select: { slug: true },
+  });
+  return rows.map((r) => ({ slug: r.slug }));
 }
 
-export default function ShoeDetailPage({ params }: { params: { slug: string } }) {
-  const product = allShoes.find((s) => s.slug === params.slug);
+export default async function ShoeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({
+    where: { slug },
+    include: { images: { orderBy: { position: "asc" } } },
+  });
   if (!product) notFound();
 
-  const related = allShoes
-    .filter((s) => s.slug !== product.slug && s.subcategory === product.subcategory)
-    .slice(0, 4);
+  const related = await prisma.product.findMany({
+    where: { category: "shoes", subcategory: product.subcategory, slug: { not: product.slug }, isActive: true },
+    include: { images: { orderBy: { position: "asc" } } },
+    take: 4,
+    orderBy: { sortOrder: "asc" },
+  });
 
-  return <ProductDetail product={product} related={related} basePath="/shoes" categoryLabel="신발" />;
+  const toProps = (p: typeof product) => ({
+    slug: p.slug, name: p.name, nameKo: p.nameKo, price: p.priceKrw ?? 0,
+    priceUsd: p.priceUsd ?? undefined, category: p.category, subcategory: p.subcategory,
+    age: p.age, description: p.descriptionKo ?? "", features: p.features,
+    images: p.images.map(i => i.url), badge: p.badge ?? undefined,
+    collection: p.collection ?? undefined, model: p.model ?? undefined,
+  });
+
+  return (
+    <ProductDetail
+      product={toProps(product)}
+      descriptionEn={product.descriptionEn ?? undefined}
+      sizes={product.sizes}
+      related={related.map(toProps)}
+      basePath="/shoes"
+      categoryLabel="신발"
+    />
+  );
 }

@@ -1,87 +1,48 @@
 import { prisma } from "./prisma";
-import { Category, Age } from "@prisma/client";
+import { Category, Prisma } from "@prisma/client";
 
-// 공통 include (이미지 포함)
-const productInclude = {
+const imageSelect = {
   images: {
     orderBy: { position: "asc" as const },
+    select: { url: true, alt: true, position: true },
   },
 } as const;
 
-// 카테고리별 전체 목록
 export async function getProductsByCategory(category: Category) {
   return prisma.product.findMany({
     where: { category, isActive: true },
-    include: productInclude,
+    include: imageSelect,
     orderBy: { sortOrder: "asc" },
   });
 }
 
-// 카테고리 + 서브카테고리 필터
-export async function getProductsBySubcategory(
+export async function getProductsFiltered(
   category: Category,
-  subcategory: string,
-  age?: Age
+  filters: { subcategory?: string; age?: string; collection?: string; badge?: string }
 ) {
-  return prisma.product.findMany({
-    where: {
-      category,
-      subcategory,
-      age: age ?? undefined,
-      isActive: true,
-    },
-    include: productInclude,
-    orderBy: { sortOrder: "asc" },
-  });
+  const where: Prisma.ProductWhereInput = { category, isActive: true };
+  if (filters.subcategory) where.subcategory = filters.subcategory;
+  if (filters.age) where.age = filters.age;
+  if (filters.collection) where.collection = { contains: filters.collection };
+  if (filters.badge) where.badge = filters.badge;
+
+  return prisma.product.findMany({ where, include: imageSelect, orderBy: { sortOrder: "asc" } });
 }
 
-// 컬렉션 필터
-export async function getProductsByCollection(collection: string) {
-  return prisma.product.findMany({
-    where: { collection: { contains: collection }, isActive: true },
-    include: productInclude,
-    orderBy: { sortOrder: "asc" },
-  });
-}
-
-// 단일 제품 조회
 export async function getProductBySlug(slug: string) {
-  return prisma.product.findUnique({
-    where: { slug },
-    include: productInclude,
-  });
+  return prisma.product.findUnique({ where: { slug }, include: imageSelect });
 }
 
-// 연관 제품 (같은 subcategory)
-export async function getRelatedProducts(
-  slug: string,
-  category: Category,
-  subcategory: string,
-  limit = 4
-) {
+export async function getRelatedProducts(slug: string, category: Category, subcategory: string, limit = 4) {
   return prisma.product.findMany({
-    where: {
-      category,
-      subcategory,
-      slug: { not: slug },
-      isActive: true,
-    },
-    include: productInclude,
+    where: { category, subcategory, slug: { not: slug }, isActive: true },
+    include: imageSelect,
     take: limit,
     orderBy: { sortOrder: "asc" },
   });
 }
 
-// 모든 슬러그 (정적 생성용)
 export async function getAllSlugs(category: Category) {
-  const products = await prisma.product.findMany({
-    where: { category, isActive: true },
-    select: { slug: true },
-  });
-  return products.map((p) => ({ slug: p.slug }));
-}
-
-// 전체 신발 슬러그 (shoes + offmat 통합)
-export async function getAllShoeSlugs() {
-  return getAllSlugs("shoes");
+  const rows = await prisma.product.findMany({ where: { category, isActive: true }, select: { slug: true } });
+  return rows.map(r => ({ slug: r.slug }));
 }

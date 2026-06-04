@@ -4,20 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Product } from "@/data/shoes";
-import { getProductDetail } from "@/data/productDetails";
 import ProductCard from "./ProductCard";
 
 interface Props {
-  product: Product;
-  related: Product[];
+  product: Product & { descriptionEn?: string };
+  descriptionEn?: string;
+  sizes?: string[];
+  related: (Product & { descriptionEn?: string })[];
   basePath: string;
   categoryLabel: string;
 }
 
-export default function ProductDetail({ product, related, basePath, categoryLabel }: Props) {
-  const detail = getProductDetail(product.slug);
-  const images = detail?.images?.length ? detail.images : product.images;
-  const sizes = detail?.sizes ?? [];
+export default function ProductDetail({ product, descriptionEn, sizes: sizesProp, related, basePath, categoryLabel }: Props) {
+  const images = product.images.length ? product.images : ["/images/placeholder.jpg"];
+  const sizes = sizesProp ?? [];
   const [mainImg, setMainImg] = useState(0);
 
   return (
@@ -134,9 +134,9 @@ export default function ProductDetail({ product, related, basePath, categoryLabe
               <p className="text-sm text-gray-600 leading-relaxed">
                 {product.description}
               </p>
-              {detail?.description && detail.description !== product.description && (
+              {descriptionEn && descriptionEn !== product.description && (
                 <p className="text-xs text-gray-400 mt-3 leading-relaxed italic">
-                  {detail.description}
+                  {descriptionEn}
                 </p>
               )}
             </div>
