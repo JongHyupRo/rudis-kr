@@ -1,44 +1,7 @@
 import { Product } from "./shoes";
 
 export const apparel: Product[] = [
-  {
-    slug: "bts-philly-hoodie",
-    name: "BTS Philly Sky Line Hoodie",
-    nameKo: "BTS 필리 스카이라인 후디",
-    price: 72000,
-    category: "apparel",
-    subcategory: "후디",
-    badge: "신상품",
-    description:
-      "필라델피아 스카이라인에서 영감을 받은 BTS 후디. 두꺼운 기모 안감으로 훈련 전후 워밍업에 최적입니다.",
-    features: [
-      "320g 기모 원단",
-      "캥거루 포켓",
-      "조절 가능한 후드 끈",
-      "RUDIS x BTS 콜라보레이션",
-      "남녀 공용 사이즈",
-      "블랙, 그레이 컬러",
-    ],
-    images: ["/images/apparel/bts-philly-hoodie.jpg"],
-  },
-  {
-    slug: "blades-sisters-crop-hoodie",
-    name: "Blades Sisters Suplex Crop Hoodie",
-    nameKo: "블레이드 시스터즈 크롭 후디",
-    price: 68000,
-    category: "apparel",
-    subcategory: "후디",
-    description:
-      "여성 레슬러를 위한 크롭 후디. 블레이드 시스터즈 디자인으로 강인함과 스타일을 동시에 표현하세요.",
-    features: [
-      "여성 전용 크롭 핏",
-      "기모 안감 보온성",
-      "신축성 있는 소재",
-      "블레이드 시스터즈 그래픽",
-      "XS~XL 사이즈",
-    ],
-    images: ["/images/apparel/bts-philly-hoodie.jpg"],
-  },
+  // ── 성인: 티셔츠 ──
   {
     slug: "usa-wrestling-gray-camo-tee",
     name: "USA Wrestling Gray Camo Tee",
@@ -46,6 +9,7 @@ export const apparel: Product[] = [
     price: 42000,
     category: "apparel",
     subcategory: "티셔츠",
+    age: "성인",
     collection: "USA 레슬링",
     badge: "베스트셀러",
     description:
@@ -67,6 +31,7 @@ export const apparel: Product[] = [
     price: 38000,
     category: "apparel",
     subcategory: "티셔츠",
+    age: "성인",
     collection: "페이스 오버 피어",
     description:
       "두려움보다 믿음을 앞세우는 Faith Over Fear 컬렉션. 격려의 메시지를 담은 그래픽 티셔츠로 매 훈련에 동기부여를 받으세요.",
@@ -79,6 +44,48 @@ export const apparel: Product[] = [
     ],
     images: ["/images/apparel/usa-wrestling-gray-camo-tee.jpg"],
   },
+  // ── 성인: 후디 & 풀오버 ──
+  {
+    slug: "bts-philly-hoodie",
+    name: "BTS Philly Sky Line Hoodie",
+    nameKo: "BTS 필리 스카이라인 후디",
+    price: 72000,
+    category: "apparel",
+    subcategory: "후디",
+    age: "성인",
+    badge: "신상품",
+    description:
+      "필라델피아 스카이라인에서 영감을 받은 BTS 후디. 두꺼운 기모 안감으로 훈련 전후 워밍업에 최적입니다.",
+    features: [
+      "320g 기모 원단",
+      "캥거루 포켓",
+      "조절 가능한 후드 끈",
+      "RUDIS x BTS 콜라보레이션",
+      "남녀 공용 사이즈",
+      "블랙, 그레이 컬러",
+    ],
+    images: ["/images/apparel/bts-philly-hoodie.jpg"],
+  },
+  {
+    slug: "blades-sisters-crop-hoodie",
+    name: "Blades Sisters Suplex Crop Hoodie",
+    nameKo: "블레이드 시스터즈 크롭 후디",
+    price: 68000,
+    category: "apparel",
+    subcategory: "후디",
+    age: "성인",
+    description:
+      "여성 레슬러를 위한 크롭 후디. 블레이드 시스터즈 디자인으로 강인함과 스타일을 동시에 표현하세요.",
+    features: [
+      "여성 전용 크롭 핏",
+      "기모 안감 보온성",
+      "신축성 있는 소재",
+      "블레이드 시스터즈 그래픽",
+      "XS~XL 사이즈",
+    ],
+    images: ["/images/apparel/bts-philly-hoodie.jpg"],
+  },
+  // ── 성인: 반바지 & 팬츠 ──
   {
     slug: "sp26-collection-shorts",
     name: "SP26 Training Shorts",
@@ -86,6 +93,7 @@ export const apparel: Product[] = [
     price: 55000,
     category: "apparel",
     subcategory: "반바지",
+    age: "성인",
     collection: "SP26 컬렉션",
     badge: "신상품",
     description:
@@ -100,6 +108,7 @@ export const apparel: Product[] = [
     ],
     images: ["/images/apparel/sp26-collection-shorts.gif"],
   },
+  // ── 성인: 아우터웨어 ──
   {
     slug: "uww-collection-jacket",
     name: "UWW Collection Jacket",
@@ -107,6 +116,7 @@ export const apparel: Product[] = [
     price: 110000,
     category: "apparel",
     subcategory: "재킷",
+    age: "성인",
     collection: "UWW 컬렉션",
     description:
       "세계 레슬링 연맹(UWW) 공인 컬렉션 재킷. 국제 대회 분위기를 일상에서도 느낄 수 있는 프리미엄 라인.",
@@ -120,13 +130,15 @@ export const apparel: Product[] = [
     ],
     images: ["/images/apparel/usa-wrestling-gray-camo-tee.jpg"],
   },
+  // ── 성인: 스포츠 브라 ──
   {
     slug: "pastel-sports-bra",
     name: "Pastel Collection Sports Bra",
     nameKo: "파스텔 컬렉션 스포츠 브라",
     price: 45000,
     category: "apparel",
-    subcategory: "스포츠 브라",
+    subcategory: "스포츠브라",
+    age: "성인",
     collection: "파스텔 컬렉션",
     description:
       "파스텔 컬렉션의 스포츠 브라. 강한 지지력과 세련된 파스텔 컬러로 여성 레슬러의 훈련을 더욱 특별하게.",
@@ -140,6 +152,7 @@ export const apparel: Product[] = [
     ],
     images: ["/images/apparel/pastel-sports-bra.jpg"],
   },
+  // ── 성인: 싱글릿 ──
   {
     slug: "collegiate-compression-tights",
     name: "Collegiate Compression Tights",
@@ -147,6 +160,7 @@ export const apparel: Product[] = [
     price: 62000,
     category: "apparel",
     subcategory: "타이츠",
+    age: "성인",
     collection: "콜리지에이트",
     description:
       "대학 레슬링 팀 스타일에서 영감을 받은 컴프레션 타이츠. 근육 지지와 혈액순환 개선으로 훈련 퍼포먼스를 높이세요.",
@@ -160,6 +174,7 @@ export const apparel: Product[] = [
     ],
     images: ["/images/apparel/pastel-sports-bra.jpg"],
   },
+  // ── 유스 ──
   {
     slug: "youth-performance-hoodie",
     name: "Youth Performance Hoodie",
@@ -167,6 +182,7 @@ export const apparel: Product[] = [
     price: 58000,
     category: "apparel",
     subcategory: "후디",
+    age: "유스",
     badge: "신상품",
     description:
       "차세대 레슬러를 위한 유스 퍼포먼스 후디. 성장기 어린이의 활발한 움직임을 방해하지 않는 신축성 소재와 편안한 핏.",
@@ -186,4 +202,43 @@ export function getApparelBySlug(slug: string): Product | undefined {
   return apparel.find((a) => a.slug === slug);
 }
 
-export const apparelSubcategories = ["전체", "티셔츠", "후디", "반바지", "재킷", "스포츠 브라", "타이츠"];
+// 리스트 페이지 필터 구조 (rudis.com 동일)
+export const apparelFilterGroups = [
+  {
+    title: "추천",
+    filters: [
+      { label: "전체 의류", key: null, value: null },
+      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
+      { label: "신상품", key: "badge", value: "신상품" },
+      { label: "SP26 컬렉션", key: "collection", value: "SP26 컬렉션" },
+    ],
+  },
+  {
+    title: "성인",
+    filters: [
+      { label: "티셔츠", key: "sub+age", value: "티셔츠+성인" },
+      { label: "후디 & 풀오버", key: "sub+age", value: "후디+성인" },
+      { label: "반바지 & 팬츠", key: "sub+age", value: "반바지+성인" },
+      { label: "아우터웨어", key: "sub+age", value: "재킷+성인" },
+      { label: "스포츠 브라", key: "sub+age", value: "스포츠브라+성인" },
+      { label: "전체 성인 의류", key: "age", value: "성인" },
+    ],
+  },
+  {
+    title: "유스",
+    filters: [
+      { label: "후디 & 풀오버", key: "sub+age", value: "후디+유스" },
+      { label: "전체 유스 의류", key: "age", value: "유스" },
+    ],
+  },
+  {
+    title: "컬렉션",
+    filters: [
+      { label: "USA 레슬링 x RUDIS", key: "collection", value: "USA 레슬링" },
+      { label: "UWW x RUDIS", key: "collection", value: "UWW 컬렉션" },
+      { label: "콜리지에이트", key: "collection", value: "콜리지에이트" },
+      { label: "페이스 오버 피어", key: "collection", value: "페이스 오버 피어" },
+      { label: "파스텔 컬렉션", key: "collection", value: "파스텔 컬렉션" },
+    ],
+  },
+];

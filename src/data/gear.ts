@@ -1,13 +1,15 @@
 import { Product } from "./shoes";
 
 export const gear: Product[] = [
+  // ── 가방: 기어팩 ──
   {
     slug: "genesis-gearpack-iii",
     name: "Genesis Gearpack III",
     nameKo: "제네시스 기어팩 III",
     price: 95000,
     category: "gear",
-    subcategory: "가방",
+    subcategory: "기어팩",
+    age: "공용",
     badge: "신상품",
     description:
       "제네시스 기어팩 III는 레슬러를 위해 설계된 고성능 백팩입니다. 신발 전용 수납공간, 대용량 메인 포켓, 레슬링 장비를 위한 다기능 수납 시스템을 갖추고 있습니다.",
@@ -22,13 +24,15 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/genesis-gearpack-iii.png"],
   },
+  // ── 가방: 더플백 ──
   {
     slug: "duffel-bag",
     name: "RUDIS Duffel Bag",
     nameKo: "RUDIS 더플백",
     price: 75000,
     category: "gear",
-    subcategory: "가방",
+    subcategory: "더플백",
+    age: "공용",
     description:
       "팀 연습이나 대회 원정에 최적화된 대용량 더플백. 넓은 수납 공간과 견고한 내구성으로 레슬링 장비 전체를 한 번에 담을 수 있습니다.",
     features: [
@@ -41,6 +45,7 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/duffel-bag.png"],
   },
+  // ── 레슬링 장비: 헤드기어 ──
   {
     slug: "headgear-pro",
     name: "Pro Headgear",
@@ -48,6 +53,7 @@ export const gear: Product[] = [
     price: 55000,
     category: "gear",
     subcategory: "헤드기어",
+    age: "공용",
     badge: "베스트셀러",
     description:
       "RUDIS 프로 헤드기어는 최상의 보호와 편안한 착용감을 동시에 제공합니다. NCAA 및 국제 규격 인증, 모든 레벨의 레슬러에게 적합합니다.",
@@ -61,6 +67,7 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/headgear-pro.jpg"],
   },
+  // ── 레슬링 장비: 니패드 ──
   {
     slug: "knee-pads",
     name: "RUDIS Knee Pads",
@@ -68,6 +75,7 @@ export const gear: Product[] = [
     price: 35000,
     category: "gear",
     subcategory: "니패드",
+    age: "공용",
     description:
       "무릎 부상 방지와 자유로운 움직임을 동시에 보장하는 RUDIS 니패드. 압박 핏으로 훈련 중 움직임을 방해하지 않습니다.",
     features: [
@@ -80,6 +88,27 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/knee-pads.jpg"],
   },
+  // ── 레슬링 장비: 슈즈 커버 ──
+  {
+    slug: "shoe-covers",
+    name: "Shoe Covers",
+    nameKo: "슈즈 커버",
+    price: 18000,
+    category: "gear",
+    subcategory: "슈즈커버",
+    age: "공용",
+    description:
+      "레슬링화 보호를 위한 슈즈 커버. 체육관 밖에서도 신발을 깨끗하게 유지하고, 아웃솔의 수명을 연장시킵니다.",
+    features: [
+      "내구성 높은 나일론 소재",
+      "신축성 있는 편안한 착용",
+      "미끄럼 방지 바닥 처리",
+      "S/M/L 사이즈",
+      "세탁기 세탁 가능",
+    ],
+    images: ["/images/gear/genesis-gearpack-iii.png"],
+  },
+  // ── 레슬링 장비: 싱글릿 ──
   {
     slug: "singlet-fracture-elite",
     name: "Fracture Elite Singlet",
@@ -87,6 +116,7 @@ export const gear: Product[] = [
     price: 85000,
     category: "gear",
     subcategory: "싱글릿",
+    age: "성인",
     badge: "신상품",
     description:
       "RUDIS 프랙처 엘리트 싱글릿은 대회용으로 설계된 최상급 레슬링 유니폼입니다. 빠른 수분 배출 기술과 신축성 높은 소재로 자유로운 움직임을 지원합니다.",
@@ -100,31 +130,15 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/singlet-fracture-elite.jpg"],
   },
-  {
-    slug: "shoe-covers",
-    name: "Shoe Covers",
-    nameKo: "슈즈 커버",
-    price: 18000,
-    category: "gear",
-    subcategory: "액세서리",
-    description:
-      "레슬링화 보호를 위한 슈즈 커버. 체육관 밖에서도 신발을 깨끗하게 유지하고, 아웃솔의 수명을 연장시킵니다.",
-    features: [
-      "내구성 높은 나일론 소재",
-      "신축성 있는 편안한 착용",
-      "미끄럼 방지 바닥 처리",
-      "S/M/L 사이즈",
-      "세탁기 세탁 가능",
-    ],
-    images: ["/images/gear/genesis-gearpack-iii.png"],
-  },
+  // ── 액세서리: 물병 ──
   {
     slug: "water-bottle",
     name: "RUDIS Water Bottle",
     nameKo: "RUDIS 물병",
     price: 22000,
     category: "gear",
-    subcategory: "액세서리",
+    subcategory: "물병",
+    age: "공용",
     description:
       "RUDIS 로고가 새겨진 스테인리스 물병. 24시간 보냉/보온 기능으로 훈련 내내 최적의 수분을 유지하세요.",
     features: [
@@ -137,13 +151,15 @@ export const gear: Product[] = [
     ],
     images: ["/images/gear/duffel-bag.png"],
   },
+  // ── 액세서리: 양말 ──
   {
     slug: "wrestling-socks",
     name: "RUDIS Socks",
     nameKo: "RUDIS 레슬링 양말",
     price: 15000,
     category: "gear",
-    subcategory: "액세서리",
+    subcategory: "양말",
+    age: "공용",
     description:
       "레슬링 전용으로 설계된 RUDIS 양말. 아치 지지대와 발뒤꿈치 쿠셔닝으로 장시간 훈련도 편안하게.",
     features: [
@@ -162,4 +178,47 @@ export function getGearBySlug(slug: string): Product | undefined {
   return gear.find((g) => g.slug === slug);
 }
 
-export const gearSubcategories = ["전체", "가방", "헤드기어", "니패드", "싱글릿", "액세서리"];
+// 리스트 페이지 필터 구조 (rudis.com 동일)
+export const gearFilterGroups = [
+  {
+    title: "추천",
+    filters: [
+      { label: "전체 장비", key: null, value: null },
+      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
+      { label: "신상품", key: "badge", value: "신상품" },
+    ],
+  },
+  {
+    title: "가방",
+    filters: [
+      { label: "기어팩", key: "sub", value: "기어팩" },
+      { label: "더플백", key: "sub", value: "더플백" },
+      { label: "전체 가방", key: "cat", value: "가방" },
+    ],
+  },
+  {
+    title: "레슬링 장비",
+    filters: [
+      { label: "헤드기어", key: "sub", value: "헤드기어" },
+      { label: "니패드", key: "sub", value: "니패드" },
+      { label: "슈즈 커버", key: "sub", value: "슈즈커버" },
+      { label: "싱글릿", key: "sub", value: "싱글릿" },
+      { label: "전체 장비", key: "cat", value: "레슬링장비" },
+    ],
+  },
+  {
+    title: "액세서리",
+    filters: [
+      { label: "물병", key: "sub", value: "물병" },
+      { label: "양말", key: "sub", value: "양말" },
+      { label: "전체 액세서리", key: "cat", value: "액세서리" },
+    ],
+  },
+];
+
+// 카테고리 매핑
+export const gearCatMap: Record<string, string[]> = {
+  가방: ["기어팩", "더플백"],
+  레슬링장비: ["헤드기어", "니패드", "슈즈커버", "싱글릿"],
+  액세서리: ["물병", "양말", "신발끈", "모자"],
+};

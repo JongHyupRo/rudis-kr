@@ -4,7 +4,8 @@ export interface Product {
   nameKo: string;
   price: number;
   category: string;
-  subcategory: string;
+  subcategory: string; // 레슬링화 | 훈련화 | 라이프스타일
+  age: string;         // 성인 | 유스 | 공용
   description: string;
   features: string[];
   images: string[];
@@ -20,6 +21,7 @@ export const shoes: Product[] = [
     price: 145000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     collection: "조던 배로우스 컬렉션",
     badge: "베스트셀러",
     description:
@@ -41,6 +43,7 @@ export const shoes: Product[] = [
     price: 135000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     badge: "신상품",
     description:
       "콜트 4.0은 RUDIS의 플래그십 레슬링화로, 4세대 업그레이드를 통해 더욱 향상된 안정성과 민첩성을 제공합니다. Ghost Division 컬러웨이를 포함한 다양한 색상으로 출시됩니다.",
@@ -61,6 +64,7 @@ export const shoes: Product[] = [
     price: 150000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "공용",
     collection: "사라 힐데브란트 컬렉션",
     description:
       "세계 챔피언 사라 힐데브란트와 함께 개발한 힐데브란트 레슬링화. Clear Sky 컬러웨이로 매트 위에서 당당하게 빛나세요. 남녀 모든 사이즈 제공.",
@@ -81,6 +85,7 @@ export const shoes: Product[] = [
     price: 155000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     collection: "카일 스나이더 컬렉션",
     badge: "한정판",
     description:
@@ -96,12 +101,33 @@ export const shoes: Product[] = [
     images: ["/images/shoes/ks-infinity-edge.png"],
   },
   {
+    slug: "ks-power",
+    name: "KS Power",
+    nameKo: "KS 파워 레슬링화",
+    price: 140000,
+    category: "shoes",
+    subcategory: "레슬링화",
+    age: "성인",
+    collection: "카일 스나이더 컬렉션",
+    description:
+      "카일 스나이더 컬렉션의 파워 모델. 블랙/레드 조합으로 강력한 존재감과 뛰어난 지지력을 동시에 제공합니다.",
+    features: [
+      "카일 스나이더 컬렉션",
+      "블랙/레드 시그니처 컬러",
+      "강화된 발바닥 그립",
+      "미드컷 발목 지지",
+      "내구성 강화 소재",
+    ],
+    images: ["/images/shoes/ks-power.png"],
+  },
+  {
     slug: "alpha-2",
     name: "Alpha 2.0",
     nameKo: "알파 2.0 레슬링화",
     price: 125000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     description:
       "알파 2.0은 입문자부터 중급 선수까지 아우르는 다목적 레슬링화입니다. Pink Power를 포함한 다양한 컬러로 나만의 스타일을 표현하세요.",
     features: [
@@ -121,6 +147,7 @@ export const shoes: Product[] = [
     price: 130000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     description:
       "스피드에 초점을 맞춘 사무라이 스피드. 초경량 설계와 날렵한 실루엣으로 상대보다 한 발 앞서 나가세요.",
     features: [
@@ -139,6 +166,7 @@ export const shoes: Product[] = [
     price: 105000,
     category: "shoes",
     subcategory: "훈련화",
+    age: "성인",
     description:
       "RUDIS 저니 훈련화는 매트 안팎에서 모두 활용 가능한 다목적 훈련화입니다. 프레데터 컬러웨이(블랙/레드)로 강렬한 존재감을 드러내세요.",
     features: [
@@ -158,6 +186,7 @@ export const shoes: Product[] = [
     price: 120000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     description:
       "커리지는 과감한 도전을 위한 레슬링화입니다. Midnight Smoke 플랫 디자인으로 시크한 매력을 발산하면서도 고성능을 유지합니다.",
     features: [
@@ -176,6 +205,7 @@ export const shoes: Product[] = [
     price: 115000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "공용",
     description:
       "국제 무대를 위해 설계된 인터내셔널. 블랙/화이트 클래식 컬러웨이로 어떤 유니폼에도 잘 어울리는 범용성을 자랑합니다.",
     features: [
@@ -194,6 +224,7 @@ export const shoes: Product[] = [
     price: 140000,
     category: "shoes",
     subcategory: "레슬링화",
+    age: "성인",
     collection: "레거시 컬렉션",
     description:
       "레슬링 레전드 카리 콜랏의 이름을 딴 콜랏 레슬링화. 전통과 혁신이 만나 탄생한 레거시 컬렉션의 대표작.",
@@ -212,4 +243,37 @@ export function getShoeBySlug(slug: string): Product | undefined {
   return shoes.find((s) => s.slug === slug);
 }
 
-export const shoeSubcategories = ["전체", "레슬링화", "훈련화", "라이프스타일"];
+// 리스트 페이지 필터 구조 (rudis.com 동일)
+export const shoeFilterGroups = [
+  {
+    title: "추천",
+    filters: [
+      { label: "전체 신발", key: null, value: null },
+      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
+      { label: "신상품", key: "badge", value: "신상품" },
+    ],
+  },
+  {
+    title: "성인",
+    filters: [
+      { label: "레슬링화 (성인)", key: "sub+age", value: "레슬링화+성인" },
+      { label: "훈련화 (성인)", key: "sub+age", value: "훈련화+성인" },
+      { label: "라이프스타일 (성인)", key: "sub+age", value: "라이프스타일+성인" },
+    ],
+  },
+  {
+    title: "유스",
+    filters: [
+      { label: "레슬링화 (유스)", key: "sub+age", value: "레슬링화+유스" },
+      { label: "훈련화 (유스)", key: "sub+age", value: "훈련화+유스" },
+    ],
+  },
+  {
+    title: "선수 컬렉션",
+    filters: [
+      { label: "사라 힐데브란트", key: "collection", value: "사라 힐데브란트 컬렉션" },
+      { label: "조던 배로우스", key: "collection", value: "조던 배로우스 컬렉션" },
+      { label: "카일 스나이더", key: "collection", value: "카일 스나이더 컬렉션" },
+    ],
+  },
+];

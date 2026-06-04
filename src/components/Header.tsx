@@ -3,41 +3,146 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const navItems = [
+type SubItem = { label: string; href: string };
+type SubGroup = { title: string; items: SubItem[] };
+type NavItem = { label: string; href: string; groups: SubGroup[] };
+
+const navItems: NavItem[] = [
   {
     label: "신발",
     href: "/shoes",
-    sub: [
-      { label: "레슬링화", href: "/shoes?sub=레슬링화" },
-      { label: "훈련화", href: "/shoes?sub=훈련화" },
-      { label: "선수 컬렉션", href: "/shoes?collection=true" },
+    groups: [
+      {
+        title: "추천",
+        items: [
+          { label: "베스트셀러", href: "/shoes?filter=베스트셀러" },
+          { label: "신상품", href: "/shoes?filter=신상품" },
+          { label: "오프매트 슈즈", href: "/shoes?sub=라이프스타일" },
+          { label: "아울렛", href: "/shoes?filter=아울렛" },
+        ],
+      },
+      {
+        title: "성인",
+        items: [
+          { label: "레슬링화", href: "/shoes?sub=레슬링화&age=성인" },
+          { label: "훈련화", href: "/shoes?sub=훈련화&age=성인" },
+          { label: "라이프스타일", href: "/shoes?sub=라이프스타일&age=성인" },
+        ],
+      },
+      {
+        title: "유스",
+        items: [
+          { label: "레슬링화", href: "/shoes?sub=레슬링화&age=유스" },
+          { label: "훈련화", href: "/shoes?sub=훈련화&age=유스" },
+          { label: "라이프스타일", href: "/shoes?sub=라이프스타일&age=유스" },
+        ],
+      },
+      {
+        title: "선수 컬렉션",
+        items: [
+          { label: "사라 힐데브란트 컬렉션", href: "/shoes?collection=사라%20힐데브란트%20컬렉션" },
+          { label: "조던 배로우스 컬렉션", href: "/shoes?collection=조던%20배로우스%20컬렉션" },
+          { label: "카일 스나이더 컬렉션", href: "/shoes?collection=카일%20스나이더%20컬렉션" },
+        ],
+      },
     ],
   },
   {
     label: "장비",
     href: "/gear",
-    sub: [
-      { label: "가방", href: "/gear?sub=가방" },
-      { label: "헤드기어", href: "/gear?sub=헤드기어" },
-      { label: "니패드", href: "/gear?sub=니패드" },
-      { label: "싱글릿", href: "/gear?sub=싱글릿" },
-      { label: "액세서리", href: "/gear?sub=액세서리" },
+    groups: [
+      {
+        title: "추천",
+        items: [
+          { label: "베스트셀러", href: "/gear?filter=베스트셀러" },
+          { label: "신상품", href: "/gear?filter=신상품" },
+          { label: "스타터 키트 & 번들", href: "/gear?filter=스타터킷" },
+          { label: "아울렛", href: "/gear?filter=아울렛" },
+        ],
+      },
+      {
+        title: "가방",
+        items: [
+          { label: "기어팩", href: "/gear?sub=기어팩" },
+          { label: "더플백", href: "/gear?sub=더플백" },
+          { label: "전체 가방", href: "/gear?cat=가방" },
+        ],
+      },
+      {
+        title: "레슬링 장비",
+        items: [
+          { label: "헤드기어", href: "/gear?sub=헤드기어" },
+          { label: "니패드", href: "/gear?sub=니패드" },
+          { label: "슈즈 커버", href: "/gear?sub=슈즈커버" },
+          { label: "싱글릿", href: "/gear?sub=싱글릿" },
+          { label: "전체 장비", href: "/gear?cat=레슬링장비" },
+        ],
+      },
+      {
+        title: "액세서리",
+        items: [
+          { label: "모자 & 비니", href: "/gear?sub=모자" },
+          { label: "물병", href: "/gear?sub=물병" },
+          { label: "양말", href: "/gear?sub=양말" },
+          { label: "신발끈", href: "/gear?sub=신발끈" },
+          { label: "전체 액세서리", href: "/gear?cat=액세서리" },
+        ],
+      },
     ],
   },
   {
     label: "의류",
     href: "/apparel",
-    sub: [
-      { label: "티셔츠", href: "/apparel?sub=티셔츠" },
-      { label: "후디", href: "/apparel?sub=후디" },
-      { label: "반바지", href: "/apparel?sub=반바지" },
-      { label: "재킷", href: "/apparel?sub=재킷" },
+    groups: [
+      {
+        title: "추천",
+        items: [
+          { label: "베스트셀러", href: "/apparel?filter=베스트셀러" },
+          { label: "신상품", href: "/apparel?filter=신상품" },
+          { label: "SP26 컬렉션", href: "/apparel?collection=SP26%20컬렉션" },
+          { label: "퍼포먼스", href: "/apparel?filter=퍼포먼스" },
+          { label: "아울렛", href: "/apparel?filter=아울렛" },
+        ],
+      },
+      {
+        title: "성인",
+        items: [
+          { label: "티셔츠", href: "/apparel?sub=티셔츠&age=성인" },
+          { label: "후디 & 풀오버", href: "/apparel?sub=후디&age=성인" },
+          { label: "반바지 & 팬츠", href: "/apparel?sub=반바지&age=성인" },
+          { label: "아우터웨어", href: "/apparel?sub=재킷&age=성인" },
+          { label: "스포츠 브라", href: "/apparel?sub=스포츠브라&age=성인" },
+          { label: "싱글릿", href: "/apparel?sub=싱글릿&age=성인" },
+          { label: "전체 성인 의류", href: "/apparel?age=성인" },
+        ],
+      },
+      {
+        title: "유스",
+        items: [
+          { label: "티셔츠", href: "/apparel?sub=티셔츠&age=유스" },
+          { label: "후디 & 풀오버", href: "/apparel?sub=후디&age=유스" },
+          { label: "반바지 & 팬츠", href: "/apparel?sub=반바지&age=유스" },
+          { label: "아우터웨어", href: "/apparel?sub=재킷&age=유스" },
+          { label: "전체 유스 의류", href: "/apparel?age=유스" },
+        ],
+      },
+      {
+        title: "컬렉션",
+        items: [
+          { label: "USA 레슬링 x RUDIS", href: "/apparel?collection=USA%20레슬링" },
+          { label: "UWW x RUDIS", href: "/apparel?collection=UWW%20컬렉션" },
+          { label: "콜리지에이트", href: "/apparel?collection=콜리지에이트" },
+          { label: "페이스 오버 피어", href: "/apparel?collection=페이스%20오버%20피어" },
+          { label: "전체 컬렉션", href: "/apparel?filter=컬렉션" },
+        ],
+      },
     ],
   },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   return (
@@ -49,7 +154,6 @@ export default function Header() {
 
       {/* 메인 헤더 */}
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-        {/* 로고 */}
         <Link href="/" className="text-2xl font-black tracking-widest hover:text-[#c8102e] transition-colors">
           RUDIS
         </Link>
@@ -59,7 +163,7 @@ export default function Header() {
           {navItems.map((item) => (
             <div
               key={item.label}
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setActiveMenu(item.label)}
               onMouseLeave={() => setActiveMenu(null)}
             >
@@ -69,17 +173,31 @@ export default function Header() {
               >
                 {item.label}
               </Link>
+
+              {/* 메가 드롭다운 */}
               {activeMenu === item.label && (
-                <div className="absolute top-full left-0 bg-black border-t-2 border-[#c8102e] min-w-[180px] py-2 shadow-xl">
-                  {item.sub.map((s) => (
-                    <Link
-                      key={s.label}
-                      href={s.href}
-                      className="block px-5 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#c8102e] transition-colors"
-                    >
-                      {s.label}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 bg-black border-t-2 border-[#c8102e] shadow-2xl min-w-max">
+                  <div className="flex gap-0 py-6 px-2">
+                    {item.groups.map((group) => (
+                      <div key={group.title} className="px-6 min-w-[160px]">
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#c8102e] mb-3 border-b border-gray-800 pb-2">
+                          {group.title}
+                        </p>
+                        <ul className="space-y-1.5">
+                          {group.items.map((sub) => (
+                            <li key={sub.label}>
+                              <Link
+                                href={sub.href}
+                                className="text-sm text-gray-300 hover:text-white hover:pl-1 transition-all block"
+                              >
+                                {sub.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -91,7 +209,6 @@ export default function Header() {
           <button className="hidden md:block text-sm font-bold tracking-wider uppercase hover:text-[#c8102e] transition-colors">
             검색
           </button>
-          {/* 모바일 메뉴 토글 */}
           <button
             className="md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -108,28 +225,38 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       {mobileOpen && (
-        <div className="md:hidden bg-black border-t border-gray-800">
+        <div className="md:hidden bg-black border-t border-gray-800 max-h-[80vh] overflow-y-auto">
           {navItems.map((item) => (
             <div key={item.label} className="border-b border-gray-800">
-              <Link
-                href={item.href}
-                className="block px-4 py-4 font-bold uppercase tracking-wider text-sm hover:text-[#c8102e]"
-                onClick={() => setMobileOpen(false)}
+              <button
+                className="w-full flex justify-between items-center px-4 py-4 font-bold uppercase tracking-wider text-sm hover:text-[#c8102e]"
+                onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
               >
                 {item.label}
-              </Link>
-              <div className="pl-6 pb-2">
-                {item.sub.map((s) => (
-                  <Link
-                    key={s.label}
-                    href={s.href}
-                    className="block py-2 text-sm text-gray-400 hover:text-white"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {s.label}
-                  </Link>
-                ))}
-              </div>
+                <span>{mobileExpanded === item.label ? "−" : "+"}</span>
+              </button>
+
+              {mobileExpanded === item.label && (
+                <div className="pb-4">
+                  {item.groups.map((group) => (
+                    <div key={group.title} className="px-5 mb-4">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[#c8102e] mb-2 mt-3">
+                        {group.title}
+                      </p>
+                      {group.items.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          className="block py-1.5 text-sm text-gray-300 hover:text-white pl-2"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
