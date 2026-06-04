@@ -3,8 +3,11 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { shoes, shoeFilterGroups } from "@/data/shoes";
+import { offmatShoes } from "@/data/offmat";
 import ProductCard from "@/components/ProductCard";
 import { Suspense } from "react";
+
+const allShoes = [...shoes, ...offmatShoes];
 
 function ShoesContent() {
   const searchParams = useSearchParams();
@@ -24,24 +27,25 @@ function ShoesContent() {
 
   const filtered = useMemo(() => {
     // URL 파라미터 우선
-    if (paramCollection) return shoes.filter((s) => s.collection?.includes(paramCollection));
-    if (paramSub && paramAge) return shoes.filter((s) => s.subcategory === paramSub && (s.age === paramAge || s.age === "공용"));
-    if (paramSub) return shoes.filter((s) => s.subcategory === paramSub);
-    if (paramAge) return shoes.filter((s) => s.age === paramAge || s.age === "공용");
-    if (paramFilter === "베스트셀러") return shoes; // rudis.com과 동일하게 전체 표시
-    if (paramFilter === "신상품") return shoes.filter((s) => s.badge === "신상품" || s.badge === "베스트셀러");
+    if (paramCollection) return allShoes.filter((s) => s.collection?.includes(paramCollection));
+    if (paramSub && paramAge) return allShoes.filter((s) => s.subcategory === paramSub && (s.age === paramAge || s.age === "공용"));
+    if (paramSub) return allShoes.filter((s) => s.subcategory === paramSub);
+    if (paramAge) return allShoes.filter((s) => s.age === paramAge || s.age === "공용");
+    if (paramFilter === "베스트셀러") return shoes;
+    if (paramFilter === "오프매트") return allShoes.filter((s) => s.subcategory === "훈련화" || s.subcategory === "라이프스타일");
+    if (paramFilter === "신상품") return allShoes.filter((s) => s.badge === "신상품");
 
     // 사이드 패널 필터
     if (!activeKey || !activeValue) return shoes;
     if (activeKey === "badge" && activeValue === "베스트셀러") return shoes;
-    if (activeKey === "badge") return shoes.filter((s) => s.badge === activeValue);
-    if (activeKey === "sub") return shoes.filter((s) => s.subcategory === activeValue);
-    if (activeKey === "age") return shoes.filter((s) => s.age === activeValue);
-    if (activeKey === "collection") return shoes.filter((s) => s.collection === activeValue);
-    if (activeKey === "model") return shoes.filter((s) => s.model === activeValue);
+    if (activeKey === "badge") return allShoes.filter((s) => s.badge === activeValue);
+    if (activeKey === "sub") return allShoes.filter((s) => s.subcategory === activeValue);
+    if (activeKey === "age") return allShoes.filter((s) => s.age === activeValue);
+    if (activeKey === "collection") return allShoes.filter((s) => s.collection === activeValue);
+    if (activeKey === "model") return allShoes.filter((s) => s.model === activeValue);
     if (activeKey === "sub+age") {
       const [sub, age] = activeValue.split("+");
-      return shoes.filter((s) => s.subcategory === sub && (s.age === age || s.age === "공용"));
+      return allShoes.filter((s) => s.subcategory === sub && (s.age === age || s.age === "공용"));
     }
     return shoes;
   }, [activeKey, activeValue, paramSub, paramAge, paramCollection, paramFilter]);
@@ -58,6 +62,7 @@ function ShoesContent() {
       <div className="text-center py-12 border-b border-gray-200">
         <h1 className="text-4xl font-black uppercase tracking-wide">
           {paramFilter === "베스트셀러" ? "베스트셀러 신발" :
+           paramFilter === "오프매트" ? "오프매트 슈즈" :
            paramFilter === "신상품" ? "신상품 신발" :
            paramCollection ? paramCollection :
            paramSub ? `${paramSub} - ${paramAge ?? "전체"}` :

@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
         items: [
           { label: "베스트셀러", href: "/shoes?filter=베스트셀러" },
           { label: "신상품", href: "/shoes?filter=신상품" },
-          { label: "오프매트 슈즈", href: "/shoes?sub=라이프스타일" },
+          { label: "오프매트 슈즈", href: "/shoes?filter=오프매트" },
           { label: "아울렛", href: "/shoes?filter=아울렛" },
         ],
       },

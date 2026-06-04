@@ -1,16 +1,19 @@
-import { shoes, getShoeBySlug } from "@/data/shoes";
+import { shoes } from "@/data/shoes";
+import { offmatShoes } from "@/data/offmat";
 import { notFound } from "next/navigation";
 import ProductDetail from "@/components/ProductDetail";
 
+const allShoes = [...shoes, ...offmatShoes];
+
 export async function generateStaticParams() {
-  return shoes.map((s) => ({ slug: s.slug }));
+  return allShoes.map((s) => ({ slug: s.slug }));
 }
 
 export default function ShoeDetailPage({ params }: { params: { slug: string } }) {
-  const product = getShoeBySlug(params.slug);
+  const product = allShoes.find((s) => s.slug === params.slug);
   if (!product) notFound();
 
-  const related = shoes
+  const related = allShoes
     .filter((s) => s.slug !== product.slug && s.subcategory === product.subcategory)
     .slice(0, 4);
 
