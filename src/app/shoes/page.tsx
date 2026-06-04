@@ -28,11 +28,12 @@ function ShoesContent() {
     if (paramSub && paramAge) return shoes.filter((s) => s.subcategory === paramSub && (s.age === paramAge || s.age === "공용"));
     if (paramSub) return shoes.filter((s) => s.subcategory === paramSub);
     if (paramAge) return shoes.filter((s) => s.age === paramAge || s.age === "공용");
-    if (paramFilter === "베스트셀러") return shoes.filter((s) => s.badge === "베스트셀러");
-    if (paramFilter === "신상품") return shoes.filter((s) => s.badge === "신상품");
+    if (paramFilter === "베스트셀러") return shoes; // rudis.com과 동일하게 전체 표시
+    if (paramFilter === "신상품") return shoes.filter((s) => s.badge === "신상품" || s.badge === "베스트셀러");
 
     // 사이드 패널 필터
     if (!activeKey || !activeValue) return shoes;
+    if (activeKey === "badge" && activeValue === "베스트셀러") return shoes;
     if (activeKey === "badge") return shoes.filter((s) => s.badge === activeValue);
     if (activeKey === "sub") return shoes.filter((s) => s.subcategory === activeValue);
     if (activeKey === "age") return shoes.filter((s) => s.age === activeValue);
