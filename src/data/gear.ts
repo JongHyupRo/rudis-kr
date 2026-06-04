@@ -20,9 +20,7 @@ export const gear: Product[] = [
       "측면 물병 포켓 x2",
       "RUDIS 로고 자수 장식",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Genesis-GearpackIII.jpg",
-    ],
+    images: ["/images/gear/genesis-gearpack-iii.png"],
   },
   {
     slug: "duffel-bag",
@@ -41,9 +39,7 @@ export const gear: Product[] = [
       "팀 마킹 서비스 가능",
       "4가지 컬러 선택",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Duffel-Bag.jpg",
-    ],
+    images: ["/images/gear/duffel-bag.png"],
   },
   {
     slug: "headgear-pro",
@@ -63,9 +59,7 @@ export const gear: Product[] = [
       "블랙, 레드, 네이비 컬러",
       "성인/청소년 사이즈 구분",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Headgear-Pro.jpg",
-    ],
+    images: ["/images/gear/headgear-pro.jpg"],
   },
   {
     slug: "knee-pads",
@@ -84,9 +78,7 @@ export const gear: Product[] = [
       "세탁기 세탁 가능",
       "1쌍 구성",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Knee-Pads.jpg",
-    ],
+    images: ["/images/gear/knee-pads.jpg"],
   },
   {
     slug: "singlet-fracture-elite",
@@ -106,9 +98,7 @@ export const gear: Product[] = [
       "성인/청소년 사이즈",
       "USA Wrestling 스타일 적용",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Fracture-Elite-Singlet.jpg",
-    ],
+    images: ["/images/gear/singlet-fracture-elite.jpg"],
   },
   {
     slug: "shoe-covers",
@@ -126,9 +116,7 @@ export const gear: Product[] = [
       "S/M/L 사이즈",
       "세탁기 세탁 가능",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Shoe-Covers.jpg",
-    ],
+    images: ["/images/gear/genesis-gearpack-iii.png"],
   },
   {
     slug: "water-bottle",
@@ -147,9 +135,7 @@ export const gear: Product[] = [
       "누수 방지 뚜껑",
       "RUDIS 레이저 각인",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Water-Bottle.jpg",
-    ],
+    images: ["/images/gear/duffel-bag.png"],
   },
   {
     slug: "wrestling-socks",
@@ -168,9 +154,7 @@ export const gear: Product[] = [
       "M/L 사이즈 (3팩 구성)",
       "블랙, 화이트, 레드 컬러",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Socks.jpg",
-    ],
+    images: ["/images/gear/knee-pads.jpg"],
   },
 ];
 

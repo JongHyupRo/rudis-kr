@@ -19,9 +19,7 @@ export const apparel: Product[] = [
       "남녀 공용 사이즈",
       "블랙, 그레이 컬러",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/BTS-Philly-Hoodie.jpg",
-    ],
+    images: ["/images/apparel/bts-philly-hoodie.jpg"],
   },
   {
     slug: "blades-sisters-crop-hoodie",
@@ -39,9 +37,7 @@ export const apparel: Product[] = [
       "블레이드 시스터즈 그래픽",
       "XS~XL 사이즈",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Blades-Crop-Hoodie.jpg",
-    ],
+    images: ["/images/apparel/bts-philly-hoodie.jpg"],
   },
   {
     slug: "usa-wrestling-gray-camo-tee",
@@ -62,9 +58,7 @@ export const apparel: Product[] = [
       "S~3XL 사이즈",
       "남녀 공용",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/USA-Wrestling-Camo-Tee.jpg",
-    ],
+    images: ["/images/apparel/usa-wrestling-gray-camo-tee.jpg"],
   },
   {
     slug: "faith-over-fear-tee",
@@ -83,9 +77,7 @@ export const apparel: Product[] = [
       "화이트, 블랙 컬러",
       "S~2XL 사이즈",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Faith-Over-Fear-Tee.jpg",
-    ],
+    images: ["/images/apparel/usa-wrestling-gray-camo-tee.jpg"],
   },
   {
     slug: "sp26-collection-shorts",
@@ -106,9 +98,7 @@ export const apparel: Product[] = [
       "빠른 건조 기능",
       "S~2XL 사이즈",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/SP26-Shorts.jpg",
-    ],
+    images: ["/images/apparel/sp26-collection-shorts.gif"],
   },
   {
     slug: "uww-collection-jacket",
@@ -128,9 +118,7 @@ export const apparel: Product[] = [
       "조절 가능한 밑단",
       "S~XL 사이즈",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/UWW-Jacket.jpg",
-    ],
+    images: ["/images/apparel/usa-wrestling-gray-camo-tee.jpg"],
   },
   {
     slug: "pastel-sports-bra",
@@ -150,9 +138,7 @@ export const apparel: Product[] = [
       "XS~XL 사이즈",
       "파스텔 핑크, 라벤더, 민트 컬러",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Pastel-Sports-Bra.jpg",
-    ],
+    images: ["/images/apparel/pastel-sports-bra.jpg"],
   },
   {
     slug: "collegiate-compression-tights",
@@ -172,9 +158,7 @@ export const apparel: Product[] = [
       "S~XL 사이즈",
       "블랙, 네이비 컬러",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Collegiate-Tights.jpg",
-    ],
+    images: ["/images/apparel/pastel-sports-bra.jpg"],
   },
   {
     slug: "youth-performance-hoodie",
@@ -194,9 +178,7 @@ export const apparel: Product[] = [
       "다양한 컬러 옵션",
       "세탁기 세탁 가능",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Youth-Performance-Hoodie.jpg",
-    ],
+    images: ["/images/apparel/bts-philly-hoodie.jpg"],
   },
 ];
 

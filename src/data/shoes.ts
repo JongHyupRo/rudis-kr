@@ -32,10 +32,7 @@ export const shoes: Product[] = [
       "통기성 라이닝",
       "성인 남녀 모든 사이즈 제공",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/JB1-Black-Red.jpg",
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/JB1-detail.jpg",
-    ],
+    images: ["/images/shoes/jb1.png"],
   },
   {
     slug: "colt-4",
@@ -55,9 +52,7 @@ export const shoes: Product[] = [
       "내구성 향상 소재 사용",
       "Ghost Division, 블랙/화이트 등 다양한 컬러",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Colt4-Ghost.jpg",
-    ],
+    images: ["/images/shoes/colt-4.png"],
   },
   {
     slug: "hildebrandt",
@@ -77,9 +72,7 @@ export const shoes: Product[] = [
       "Clear Sky, 블랙 등 컬러 제공",
       "남녀 공용 사이즈",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Hildebrandt-ClearSky.jpg",
-    ],
+    images: ["/images/shoes/hildebrandt.png"],
   },
   {
     slug: "ks-infinity-edge",
@@ -100,9 +93,7 @@ export const shoes: Product[] = [
       "통기성 메쉬 어퍼",
       "한정 수량 출시",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/KS-InfinityEdge-WinterWarfare.jpg",
-    ],
+    images: ["/images/shoes/ks-infinity-edge.png"],
   },
   {
     slug: "alpha-2",
@@ -121,9 +112,7 @@ export const shoes: Product[] = [
       "편안한 안감 처리",
       "모든 레벨 선수에게 적합",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Alpha2-PinkPower.jpg",
-    ],
+    images: ["/images/shoes/alpha-2.png"],
   },
   {
     slug: "samurai-speed",
@@ -141,9 +130,7 @@ export const shoes: Product[] = [
       "빠른 착화 레이싱 시스템",
       "남녀 전 사이즈 제공",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Samurai-Speed.jpg",
-    ],
+    images: ["/images/shoes/samurai-speed.png"],
   },
   {
     slug: "journey-predator",
@@ -162,9 +149,7 @@ export const shoes: Product[] = [
       "통기성 메쉬 어퍼",
       "이름 각인 서비스 가능",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Journey-Predator.jpg",
-    ],
+    images: ["/images/shoes/journey-predator.jpg"],
   },
   {
     slug: "courage",
@@ -182,9 +167,7 @@ export const shoes: Product[] = [
       "미끄럼 방지 특수 아웃솔",
       "모든 매트 표면 적합",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Courage-MidnightSmoke.jpg",
-    ],
+    images: ["/images/shoes/courage.png"],
   },
   {
     slug: "international",
@@ -202,9 +185,7 @@ export const shoes: Product[] = [
       "내구성 우선 설계",
       "전 사이즈 재고 보유",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/International-BlackWhite.jpg",
-    ],
+    images: ["/images/shoes/international.png"],
   },
   {
     slug: "kolat",
@@ -223,9 +204,7 @@ export const shoes: Product[] = [
       "우수한 발목 지지력",
       "클래식 레슬링 팬을 위한 디자인",
     ],
-    images: [
-      "https://cdn.shopify.com/s/files/1/0523/7079/6977/files/Kolat-Legacy.jpg",
-    ],
+    images: ["/images/shoes/kolat.png"],
   },
 ];
 
