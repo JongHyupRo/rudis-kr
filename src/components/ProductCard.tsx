@@ -42,9 +42,11 @@ export default function ProductCard({ product, basePath }: Props) {
         <h3 className="mt-1 font-bold text-sm group-hover:text-[#c8102e] transition-colors">
           {product.nameKo}
         </h3>
-        <p className="mt-1 font-bold text-sm">
-          ₩{product.price.toLocaleString()}
-        </p>
+        {product.price ? (
+          <p className="mt-1 font-bold text-sm">₩{product.price.toLocaleString()}</p>
+        ) : (
+          <p className="mt-1 text-sm text-gray-400">문의</p>
+        )}
       </div>
     </Link>
   );
