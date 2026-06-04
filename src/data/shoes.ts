@@ -363,6 +363,130 @@ export const shoes: Product[] = [
   },
 
   // ─────────────────────────────────────────
+  // Colt 4.0 — 추가 컬러
+  // ─────────────────────────────────────────
+  {
+    slug: "rudis-colt-4-0-adult-wrestling-shoes-ghost-division",
+    name: "RUDIS Colt 4.0 Adult Wrestling Shoes - Ghost Division",
+    nameKo: "콜트 4.0 성인 레슬링화 - 고스트 디비전",
+    price: 143000, priceUsd: 99,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "Colt 4.0",
+    badge: "베스트셀러",
+    description: "RUDIS 대표 모델 콜트 4.0의 고스트 디비전 컬러웨이. 흑백의 강렬한 대비로 매트 위에서 압도적인 존재감.",
+    features: ["4세대 아웃솔 패턴", "고스트 디비전 특별 컬러", "강화된 발목 보호 구조", "경량 TPU 섕크 적용"],
+    images: ["/images/shoes/colt-4-ghost-division.jpg"],
+  },
+
+  // ─────────────────────────────────────────
+  // JB1 — 추가 컬러
+  // ─────────────────────────────────────────
+  {
+    slug: "jb1-adult-wrestling-shoes-black-metal",
+    name: "JB1 Adult Wrestling Shoes - Black Metal",
+    nameKo: "JB1 성인 레슬링화 - 블랙 메탈",
+    price: 174000, priceUsd: 120,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "JB1", collection: "조던 배로우스 컬렉션",
+    badge: "베스트셀러",
+    description: "JB1 블랙 메탈 컬러웨이. 금속 광택의 블랙으로 매트 위의 강철 같은 의지를 표현.",
+    features: ["조던 배로우스 공동 설계", "블랙 메탈 컬러웨이", "초경량 메쉬 어퍼", "고강도 고무 아웃솔"],
+    images: ["/images/shoes/jb1-black-metal.jpg"],
+  },
+
+  // ─────────────────────────────────────────
+  // Journey Knit — 추가 컬러
+  // ─────────────────────────────────────────
+  {
+    slug: "rudis-journey-knit-adult-training-shoes-white-neon",
+    name: "RUDIS Journey Knit Adult Training Shoes - White/Neon",
+    nameKo: "저니 니트 성인 훈련화 - 화이트/네온",
+    price: 181000, priceUsd: 125,
+    category: "shoes", subcategory: "훈련화", age: "성인",
+    model: "Journey Knit",
+    badge: "베스트셀러",
+    description: "선명한 네온 포인트와 깔끔한 화이트의 조합. 저니 니트 화이트/네온 에디션.",
+    features: ["니트 어퍼 업그레이드", "화이트/네온 컬러", "향상된 통기성", "쿠셔닝 강화 인솔", "매트 내외 겸용"],
+    images: ["/images/shoes/journey-knit-white-neon.jpg"],
+  },
+
+  // ─────────────────────────────────────────
+  // Alpha 2.0 — 추가 컬러
+  // ─────────────────────────────────────────
+  {
+    slug: "rudis-alpha-2-0-adult-wrestling-shoes-pink-power",
+    name: "RUDIS Alpha 2.0 Adult Wrestling Shoes - Pink Power",
+    nameKo: "알파 2.0 성인 레슬링화 - 핑크 파워",
+    price: 181000, priceUsd: 125,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "Alpha 2.0",
+    badge: "베스트셀러",
+    description: "강렬한 핑크 컬러로 매트를 장악하라. 알파 2.0 핑크 파워 에디션.",
+    features: ["다목적 레슬링 & 훈련용", "핑크 파워 시그니처 컬러", "경량 EVA 미드솔", "내구성 고무 아웃솔"],
+    images: ["/images/shoes/alpha-pink-power.jpg"],
+  },
+  {
+    slug: "rudis-alpha-2-0-youth-wrestling-shoes-pink-power",
+    name: "RUDIS Alpha 2.0 Youth Wrestling Shoes - Pink Power",
+    nameKo: "알파 2.0 유스 레슬링화 - 핑크 파워",
+    price: 166000, priceUsd: 115,
+    category: "shoes", subcategory: "레슬링화", age: "유스",
+    model: "Alpha 2.0",
+    description: "유스 레슬러를 위한 알파 2.0 핑크 파워 에디션.",
+    features: ["유스 전용 사이즈", "핑크 파워 시그니처 컬러", "경량 EVA 미드솔", "내구성 고무 아웃솔"],
+    images: ["/images/shoes/alpha-youth-pink-power.jpg"],
+  },
+
+  // ─────────────────────────────────────────
+  // Courage, International, Kolat, Hildebrandt — 기존 모델 정확한 슬러그
+  // ─────────────────────────────────────────
+  {
+    slug: "rudis-courage-adult-wrestling-shoes-midnight-smoke",
+    name: "RUDIS Courage Adult Wrestling Shoes - Midnight Smoke",
+    nameKo: "커리지 성인 레슬링화 - 미드나이트 스모크",
+    price: 123000, priceUsd: 85,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "Courage",
+    description: "미드나이트 스모크 플랫 디자인. 시크한 매력과 고성능을 동시에.",
+    features: ["미드나이트 스모크 플랫 디자인", "낮은 프로파일 지면 밀착감", "강화 발끝 보호대", "미끄럼 방지 아웃솔"],
+    images: ["/images/shoes/courage-midnight-smoke.jpg"],
+  },
+  {
+    slug: "rudis-international-adult-wrestling-shoes-black-white",
+    name: "RUDIS International Adult Wrestling Shoes - Black/White",
+    nameKo: "인터내셔널 성인 레슬링화 - 블랙/화이트",
+    price: 151000, priceUsd: 104,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "International",
+    description: "국제 무대를 위한 클래식 블랙/화이트 레슬링화.",
+    features: ["국제 규격 레슬링 대회 적합", "클래식 블랙/화이트 컬러", "표준 레슬링화 규격 준수", "내구성 우선 설계"],
+    images: ["/images/shoes/international-black-white.jpg"],
+  },
+  {
+    slug: "rudis-kolat-adult-wrestling-shoes-legacy",
+    name: "RUDIS Kolat Adult Wrestling Shoes - Legacy",
+    nameKo: "콜랏 성인 레슬링화 - 레거시",
+    price: 239000, priceUsd: 165,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "Kolat", collection: "레거시 컬렉션",
+    description: "레슬링 레전드 카리 콜랏 레거시 컬렉션. 전통과 혁신의 만남.",
+    features: ["카리 콜랏 레거시 디자인", "전통 레슬링화 실루엣", "현대적 소재 적용", "우수한 발목 지지력"],
+    images: ["/images/shoes/kolat-legacy.jpg"],
+  },
+  {
+    slug: "hildebrandt-womens-adult-wrestling-shoes-clear-sky",
+    name: "Hildebrandt Women's Adult Wrestling Shoes - Clear Sky",
+    nameKo: "힐데브란트 여성 성인 레슬링화 - 클리어 스카이",
+    price: 181000, priceUsd: 125,
+    category: "shoes", subcategory: "레슬링화", age: "성인",
+    model: "Hildebrandt", collection: "사라 힐데브란트 컬렉션",
+    badge: "베스트셀러",
+    description: "세계 챔피언 사라 힐데브란트 시그니처 클리어 스카이 에디션. 맑은 하늘처럼 상쾌한 컬러.",
+    features: ["사라 힐데브란트 시그니처", "클리어 스카이 컬러웨이", "여성 발 구조 최적화 핏", "고반응성 쿠셔닝 미드솔"],
+    images: ["/images/shoes/hildebrandt-clear-sky.jpg"],
+  },
+
+  // ─────────────────────────────────────────
   // Colt 3.0
   // ─────────────────────────────────────────
   {

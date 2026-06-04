@@ -1,14 +1,37 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { shoes, shoeFilterGroups } from "@/data/shoes";
 import ProductCard from "@/components/ProductCard";
+import { Suspense } from "react";
 
-export default function ShoesPage() {
-  const [activeKey, setActiveKey] = useState<string | null>(null);
-  const [activeValue, setActiveValue] = useState<string | null>(null);
+function ShoesContent() {
+  const searchParams = useSearchParams();
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [activeKey, setActiveKey] = useState<string | null>(
+    searchParams.get("key") ?? null
+  );
+  const [activeValue, setActiveValue] = useState<string | null>(
+    searchParams.get("val") ?? null
+  );
+
+  // URL 쿼리로 초기 필터 세팅 (헤더 메가메뉴 링크 처리)
+  const paramSub = searchParams.get("sub");
+  const paramAge = searchParams.get("age");
+  const paramCollection = searchParams.get("collection");
+  const paramFilter = searchParams.get("filter");
 
   const filtered = useMemo(() => {
+    // URL 파라미터 우선
+    if (paramCollection) return shoes.filter((s) => s.collection?.includes(paramCollection));
+    if (paramSub && paramAge) return shoes.filter((s) => s.subcategory === paramSub && (s.age === paramAge || s.age === "공용"));
+    if (paramSub) return shoes.filter((s) => s.subcategory === paramSub);
+    if (paramAge) return shoes.filter((s) => s.age === paramAge || s.age === "공용");
+    if (paramFilter === "베스트셀러") return shoes.filter((s) => s.badge === "베스트셀러");
+    if (paramFilter === "신상품") return shoes.filter((s) => s.badge === "신상품");
+
+    // 사이드 패널 필터
     if (!activeKey || !activeValue) return shoes;
     if (activeKey === "badge") return shoes.filter((s) => s.badge === activeValue);
     if (activeKey === "sub") return shoes.filter((s) => s.subcategory === activeValue);
@@ -20,85 +43,104 @@ export default function ShoesPage() {
       return shoes.filter((s) => s.subcategory === sub && (s.age === age || s.age === "공용"));
     }
     return shoes;
-  }, [activeKey, activeValue]);
+  }, [activeKey, activeValue, paramSub, paramAge, paramCollection, paramFilter]);
 
   const isActive = (key: string | null, value: string | null) =>
     activeKey === key && activeValue === value;
 
+  // 현재 섹션 타이틀
+  const pageTitle = paramCollection ?? (paramSub ? `${paramSub} (${paramAge ?? "전체"})` : "전체 신발");
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div>
       {/* 페이지 헤더 */}
-      <div className="mb-8">
-        <p className="text-xs text-[#c8102e] font-bold uppercase tracking-widest mb-2">RUDIS</p>
-        <h1 className="text-4xl font-black uppercase">신발</h1>
-        <p className="text-gray-500 mt-2">레슬링화부터 훈련화까지 — 최고의 그립력과 안정성</p>
+      <div className="text-center py-12 border-b border-gray-200">
+        <h1 className="text-4xl font-black uppercase tracking-wide">
+          {paramFilter === "베스트셀러" ? "베스트셀러 신발" :
+           paramFilter === "신상품" ? "신상품 신발" :
+           paramCollection ? paramCollection :
+           paramSub ? `${paramSub} - ${paramAge ?? "전체"}` :
+           "신발"}
+        </h1>
+        <p className="text-sm text-gray-400 mt-2">Win more</p>
       </div>
 
-      <div className="flex gap-10">
-        {/* 사이드바 필터 */}
-        <aside className="hidden md:block w-52 flex-shrink-0">
-          {shoeFilterGroups.map((group) => (
-            <div key={group.title} className="mb-6">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#c8102e] mb-2 pb-1 border-b border-gray-200">
-                {group.title}
-              </p>
-              <ul className="space-y-1">
-                {group.filters.map((f) => (
-                  <li key={f.label}>
-                    <button
-                      onClick={() => {
-                        setActiveKey(f.key);
-                        setActiveValue(f.value);
-                      }}
-                      className={`text-sm w-full text-left py-1 px-2 transition-colors ${
-                        isActive(f.key, f.value)
-                          ? "text-[#c8102e] font-bold bg-red-50"
-                          : "text-gray-600 hover:text-black hover:bg-gray-50"
-                      }`}
-                    >
-                      {f.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </aside>
+      {/* 제품 수 + 필터 바 */}
+      <div className="bg-black text-white flex items-center justify-between px-6 py-3 sticky top-16 z-40">
+        <span className="text-sm font-bold">{filtered.length}개 제품</span>
+        <button
+          className="flex items-center gap-2 text-sm font-bold hover:text-gray-300 transition-colors"
+          onClick={() => setFilterOpen(!filterOpen)}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M3 4h18M7 8h10M11 12h2M9 16h6" />
+          </svg>
+          필터
+        </button>
+      </div>
 
-        {/* 모바일 필터 (가로 스크롤) */}
-        <div className="md:hidden w-full mb-6 overflow-x-auto">
-          <div className="flex gap-2 pb-2">
-            <button
-              onClick={() => { setActiveKey(null); setActiveValue(null); }}
-              className={`flex-shrink-0 px-4 py-2 text-xs font-bold uppercase tracking-wide border ${!activeKey ? "bg-black text-white border-black" : "border-gray-300 text-gray-600"}`}
-            >
-              전체
-            </button>
-            {shoeFilterGroups.flatMap((g) => g.filters).filter((f) => f.key).map((f) => (
+      <div className="flex">
+        {/* 필터 패널 (슬라이드) */}
+        {filterOpen && (
+          <aside className="w-64 flex-shrink-0 border-r border-gray-200 p-6 bg-white">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-bold uppercase tracking-widest text-sm">필터</h2>
               <button
-                key={f.label}
-                onClick={() => { setActiveKey(f.key); setActiveValue(f.value); }}
-                className={`flex-shrink-0 px-4 py-2 text-xs font-bold uppercase tracking-wide border ${isActive(f.key, f.value) ? "bg-black text-white border-black" : "border-gray-300 text-gray-600"}`}
+                className="text-xs text-gray-400 hover:text-black"
+                onClick={() => { setActiveKey(null); setActiveValue(null); }}
               >
-                {f.label}
+                초기화
               </button>
+            </div>
+            {shoeFilterGroups.map((group) => (
+              <div key={group.title} className="mb-6">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#c8102e] mb-2 pb-1 border-b border-gray-100">
+                  {group.title}
+                </p>
+                <ul className="space-y-1">
+                  {group.filters.map((f) => (
+                    <li key={f.label}>
+                      <button
+                        onClick={() => { setActiveKey(f.key); setActiveValue(f.value); }}
+                        className={`text-sm w-full text-left py-1.5 px-2 transition-colors rounded ${
+                          isActive(f.key, f.value)
+                            ? "text-[#c8102e] font-bold bg-red-50"
+                            : "text-gray-600 hover:text-black hover:bg-gray-50"
+                        }`}
+                      >
+                        {f.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </div>
-        </div>
+          </aside>
+        )}
 
-        {/* 제품 그리드 */}
-        <div className="flex-1">
-          <p className="text-sm text-gray-400 mb-6">{filtered.length}개 제품</p>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 제품 그리드 — 4컬럼 (rudis.com 동일) */}
+        <div className="flex-1 p-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filtered.map((product) => (
               <ProductCard key={product.slug} product={product} basePath="/shoes" />
             ))}
           </div>
           {filtered.length === 0 && (
-            <p className="text-center text-gray-400 py-20">해당 조건에 제품이 없습니다.</p>
+            <p className="text-center text-gray-400 py-32 text-sm">
+              해당 조건에 맞는 제품이 없습니다.
+            </p>
           )}
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ShoesPage() {
+  return (
+    <Suspense>
+      <ShoesContent />
+    </Suspense>
   );
 }
