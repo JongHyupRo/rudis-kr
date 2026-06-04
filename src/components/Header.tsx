@@ -13,15 +13,6 @@ const navItems: NavItem[] = [
     href: "/shoes",
     groups: [
       {
-        title: "추천",
-        items: [
-          { label: "베스트셀러", href: "/shoes?filter=베스트셀러" },
-          { label: "신상품", href: "/shoes?filter=신상품" },
-          { label: "오프매트 슈즈", href: "/shoes?filter=오프매트" },
-          { label: "아울렛", href: "/shoes?filter=아울렛" },
-        ],
-      },
-      {
         title: "성인",
         items: [
           { label: "레슬링화", href: "/shoes?sub=레슬링화&age=성인" },
@@ -51,15 +42,6 @@ const navItems: NavItem[] = [
     label: "장비",
     href: "/gear",
     groups: [
-      {
-        title: "추천",
-        items: [
-          { label: "베스트셀러", href: "/gear?filter=베스트셀러" },
-          { label: "신상품", href: "/gear?filter=신상품" },
-          { label: "스타터 키트 & 번들", href: "/gear?filter=스타터킷" },
-          { label: "아울렛", href: "/gear?filter=아울렛" },
-        ],
-      },
       {
         title: "가방",
         items: [
@@ -94,16 +76,6 @@ const navItems: NavItem[] = [
     label: "의류",
     href: "/apparel",
     groups: [
-      {
-        title: "추천",
-        items: [
-          { label: "베스트셀러", href: "/apparel?filter=베스트셀러" },
-          { label: "신상품", href: "/apparel?filter=신상품" },
-          { label: "SP26 컬렉션", href: "/apparel?collection=SP26%20컬렉션" },
-          { label: "퍼포먼스", href: "/apparel?filter=퍼포먼스" },
-          { label: "아울렛", href: "/apparel?filter=아울렛" },
-        ],
-      },
       {
         title: "성인",
         items: [

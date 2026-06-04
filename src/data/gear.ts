@@ -181,14 +181,6 @@ export function getGearBySlug(slug: string): Product | undefined {
 // 리스트 페이지 필터 구조 (rudis.com 동일)
 export const gearFilterGroups = [
   {
-    title: "추천",
-    filters: [
-      { label: "전체 장비", key: null, value: null },
-      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
-      { label: "신상품", key: "badge", value: "신상품" },
-    ],
-  },
-  {
     title: "가방",
     filters: [
       { label: "기어팩", key: "sub", value: "기어팩" },

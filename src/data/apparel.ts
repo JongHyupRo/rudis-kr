@@ -205,15 +205,6 @@ export function getApparelBySlug(slug: string): Product | undefined {
 // 리스트 페이지 필터 구조 (rudis.com 동일)
 export const apparelFilterGroups = [
   {
-    title: "추천",
-    filters: [
-      { label: "전체 의류", key: null, value: null },
-      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
-      { label: "신상품", key: "badge", value: "신상품" },
-      { label: "SP26 컬렉션", key: "collection", value: "SP26 컬렉션" },
-    ],
-  },
-  {
     title: "성인",
     filters: [
       { label: "티셔츠", key: "sub+age", value: "티셔츠+성인" },

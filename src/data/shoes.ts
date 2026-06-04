@@ -906,14 +906,6 @@ export function getShoeBySlug(slug: string): Product | undefined {
 
 export const shoeFilterGroups = [
   {
-    title: "추천",
-    filters: [
-      { label: "전체 신발", key: null, value: null },
-      { label: "베스트셀러", key: "badge", value: "베스트셀러" },
-      { label: "신상품", key: "badge", value: "신상품" },
-    ],
-  },
-  {
     title: "성인",
     filters: [
       { label: "레슬링화 (성인)", key: "sub+age", value: "레슬링화+성인" },
